@@ -11,10 +11,17 @@ return new class extends Migration
      *
      * @return void
      */
+    
+    // field : id, title, content, image, user_id, category_id
     public function up()
     {
         Schema::create('articles', function (Blueprint $table) {
             $table->id();
+            $table->string('title');
+            $table->text('content');
+            $table->binary('image');
+            $table->foreignId('user_id');
+            $table->foreignId('category_id');
             $table->timestamps();
         });
     }
