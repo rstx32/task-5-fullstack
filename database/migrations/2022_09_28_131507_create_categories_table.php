@@ -3,8 +3,6 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use App\Models\User;
-use App\Models\Category;
 
 return new class extends Migration
 {
@@ -13,17 +11,14 @@ return new class extends Migration
      *
      * @return void
      */
-    
-    // field : id, title, content, image, user_id, category_id
+
+    // field : id, name, user_id
     public function up()
     {
-        Schema::create('articles', function (Blueprint $table) {
+        Schema::create('categories', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->text('content');
-            $table->binary('image');
-            $table->foreignIdFor(User::class);
-            $table->foreignIdFor(Category::class);
+            $table->string('name');
+            $table->foreignId('user_id')->constrained('users');
             $table->timestamps();
         });
     }
@@ -35,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('articles');
+        Schema::dropIfExists('categories');
     }
 };
