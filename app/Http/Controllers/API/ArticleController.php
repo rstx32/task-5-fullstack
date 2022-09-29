@@ -10,10 +10,9 @@ use Validator;
 
 class ArticleController extends Controller
 {
-    // display all article
+    // display all article with pagination
     public function index(){
-        $article = Article::latest()->get();
-        return response()->json([ArticleResource::collection($article), 'Article fetched']);
+        return Article::paginate();
     }
     
     // display single article
