@@ -12,6 +12,14 @@ Tujuan : Membangun rest api dan oauth token menggunakan laravel framework serta 
 7. Buatlah unit testing untuk setiap api posts
 8. Untuk table yang digunakan silahkan refer pada link ini https://docs.google.com/document/d/18vr7dMZNmxeiT_CS6ofRTik8YygBraRvl0vscNXpRbQ/edit?usp=sharing
 
+Articles            Categories
+============        =============
+id                  id
+title               name
+content             user_id
+image
+user_id
+category_id
 
 
 - Membangun Blog Sederhana Menggunakan laravel Blade serta Laravel UI
