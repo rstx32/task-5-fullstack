@@ -12,6 +12,10 @@ class Article extends Model
     protected $guarded = ['id'];
 
     public function category(){
-        return $this->hasMany(Category::class);
+        return $this->belongsTo(Category::class);
+    }
+
+    public function user(){
+        return $this->belongsTo(User::class);
     }
 }
