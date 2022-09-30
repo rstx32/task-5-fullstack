@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\ArticleController;
+use App\Http\Controllers\PassportController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,11 +16,18 @@ use App\Http\Controllers\API\ArticleController;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
 
 
 Route::prefix('v1')->group(function (){
-    Route::apiResource('articles', ArticleController::class);
+    Route::post('/login', [PassportController::class, 'login'])->name('login');
+    Route::post('/register', [PassportController::class, 'register'])->name('register');
+    
+    Route::middleware('auth:api')->group(function(){
+        Route::get('/all', [PassportController::class, 'users']);
+
+        Route::apiResource('articles', ArticleController::class);
+    });
 });
