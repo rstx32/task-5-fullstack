@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\ArticleController;
+use App\Http\Controllers\API\CategoryController;
 use App\Http\Controllers\PassportController;
 
 /*
@@ -20,14 +21,14 @@ use App\Http\Controllers\PassportController;
 //     return $request->user();
 // });
 
+Route::prefix("v1")->group(function () {
+    Route::post("/login", [PassportController::class, "login"])->name("login");
+    Route::post("/register", [PassportController::class, "register"])->name("register");
 
-Route::prefix('v1')->group(function (){
-    Route::post('/login', [PassportController::class, 'login'])->name('login');
-    Route::post('/register', [PassportController::class, 'register'])->name('register');
-    
-    Route::middleware('auth:api')->group(function(){
-        Route::get('/all', [PassportController::class, 'users']);
+    Route::middleware("auth:api")->group(function () {
+        Route::get("/all", [PassportController::class, "users"]);
 
-        Route::apiResource('articles', ArticleController::class);
+        Route::apiResource("articles", ArticleController::class);
+        Route::apiResource("categories", CategoryController::class);
     });
 });
