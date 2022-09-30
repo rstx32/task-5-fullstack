@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 use App\Models\User;
+use Validator;
 
 class PassportController extends Controller
 {
@@ -30,11 +31,16 @@ class PassportController extends Controller
 
     // register
     public function register(Request $request){
-        $register = $request->validate([
+        $register = Validator::make($request->all(),
+        [
             'name' => 'required|string',
             'email' => 'required|email|unique:users',
             'password' => 'required|min:8'
         ]);
+
+        if($register->fails()){
+            return response()->json($register->errors());
+        }
 
         $user = User::create([
             'name' => $request->name,
