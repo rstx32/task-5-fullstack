@@ -28,7 +28,12 @@ Route::prefix("v1")->group(function () {
     Route::middleware("auth:api")->group(function () {
         Route::get("/all", [PassportController::class, "users"]);
 
-        Route::apiResource("articles", ArticleController::class);
+        Route::apiResource("articles", ArticleController::class, [
+            'names' => [
+                'index' => 'article.index',
+                'store' => 'article.store',
+            ]
+        ]);
         Route::apiResource("categories", CategoryController::class);
     });
 });
