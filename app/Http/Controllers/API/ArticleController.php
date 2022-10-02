@@ -34,7 +34,7 @@ class ArticleController extends Controller
         $validator = Validator::make($request->all(), [
             "title" => "required|string|max:255",
             "content" => "required|string",
-            "image" => "required|string",
+            "image" => "required|mimes:jpg,jpeg,png",
             "user_id" => "required|integer",
             "category_id" => "required|integer",
         ]);
@@ -43,10 +43,13 @@ class ArticleController extends Controller
             return response()->json($validator->errors());
         }
 
+        $imageName = $request->image->hashName();
+        $request->image->move(public_path('images'), $imageName);
+
         $article = Article::create([
             "title" => $request->title,
             "content" => $request->content,
-            "image" => $request->image,
+            "image" => $imageName,
             "user_id" => $request->user_id,
             "category_id" => $request->category_id,
         ]);
