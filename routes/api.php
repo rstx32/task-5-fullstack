@@ -17,10 +17,6 @@ use App\Http\Controllers\PassportController;
 |
 */
 
-// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
-
 Route::prefix("v1")->group(function () {
     Route::post("/login", [PassportController::class, "login"])->name("login");
     Route::post("/register", [PassportController::class, "register"])->name("register");
