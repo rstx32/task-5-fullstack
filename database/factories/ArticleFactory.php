@@ -21,7 +21,7 @@ class ArticleFactory extends Factory
         return [
             'title' => $this->faker->sentence(),
             'content' => $this->faker->text(),
-            'image' => $this->faker->imageUrl(200,200),
+            'image' => "image-test.jpg",
             'category_id' => $this->faker->unique()->numberBetween(1, Category::count()),
             'user_id' => $this->faker->numberBetween(1, User::count()),
         ];
