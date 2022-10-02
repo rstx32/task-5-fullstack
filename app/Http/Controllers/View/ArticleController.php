@@ -38,7 +38,7 @@ class ArticleController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return response($validator->errors());
+            return redirect('/user/articles/create')->with(['errors' => $validator->errors()]);
         }
 
         $imageName = $request->image->hashName();
@@ -52,7 +52,7 @@ class ArticleController extends Controller
             "category_id" => $request->category_id,
         ]);
 
-        return redirect('/articles');
+        return redirect('/user/articles')->with(['success' => 'success creating article']);
     }
 
     // show an article
@@ -81,7 +81,7 @@ class ArticleController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return response($validator->errors());
+            return redirect('/user/articles/ ' . $id . '/edit')->with(['errors' => $validator->errors()]);
         }
 
         // if image inserted, then replace current image with new image
@@ -108,7 +108,7 @@ class ArticleController extends Controller
             ]);
         }
 
-        return redirect('/articles/ ' . $id);
+        return redirect('/user/articles/ ' . $id)->with(['success' => 'success updating article']);
     }
 
     // delete an article
@@ -119,6 +119,7 @@ class ArticleController extends Controller
             File::delete(public_path('images/' . $imageName));
         }
         Article::destroy($id);
-        return redirect('/articles');
+        
+        return redirect('/user/articles')->with(['success' => 'article deleted']);;
     }
 }

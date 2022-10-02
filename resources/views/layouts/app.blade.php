@@ -31,10 +31,10 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
                         <li>
-                            <a href="/articles">Articles</a>
+                            <a href="/user/articles">Articles</a>
                         </li>
                         <li>
-                            <a href="/categories">Categories</a>
+                            <a href="/user/categories">Categories</a>
                         </li>
                     </ul>
 

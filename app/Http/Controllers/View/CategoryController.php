@@ -32,7 +32,7 @@ class CategoryController extends Controller
         ]);
 
         if($validator->fails()){
-            return response($validator->errors());
+            return redirect('/user/categories/create')->with(['errors' => $validator->errors()]);
         }
 
         Category::create([
@@ -40,7 +40,7 @@ class CategoryController extends Controller
             "user_id" => Auth::user()->id,
         ]);
 
-        return redirect('/categories');
+        return redirect('/user/categories')->with(['success' => 'success creating category']);
     }
 
     // show list articles of category
@@ -68,14 +68,14 @@ class CategoryController extends Controller
         ]);
 
         if($validator->fails()){
-            return response($validator->errors());
+            return redirect('/user/categories/ ' . $id . '/edit')->with(['errors' => $validator->errors()]);
         }
 
         Category::find($id)->update([
             "name" => $request->name,
         ]);
 
-        return redirect('/categories');
+        return redirect('/user/categories')->with(['success' => 'success updating category']);
     }
 
     // delete a category and it's article
@@ -84,6 +84,6 @@ class CategoryController extends Controller
         $categories->article->each->delete();
         $categories->delete();
 
-        return redirect('/categories');
+        return redirect('/user/categories')->with(['success' => 'success deleting category']);
     }
 }

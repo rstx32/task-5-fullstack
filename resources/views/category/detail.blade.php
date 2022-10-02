@@ -19,7 +19,7 @@
                     <h5 class="card-title">
                         {{$article->title}}
                     </h5>
-                    <a href="/articles/{{$article->id}}" class="btn btn-primary">Details</a>
+                    <a href="/user/articles/{{$article->id}}" class="btn btn-primary">Details</a>
                 </div>
             </div>
         </div>

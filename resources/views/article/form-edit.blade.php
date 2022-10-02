@@ -2,10 +2,23 @@
 
 @section('content')
 <div class="container">
+
     <form action="{{ route('articles.update', $article->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
         <div class="row"> 
+
+            @if($errors->any())
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong>Error! cannot update article :</strong>
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            @endif
         
             <div class="card col-md-9 col-sm-12 mb-5 bg-white p-3">
                 <div class="card-body">

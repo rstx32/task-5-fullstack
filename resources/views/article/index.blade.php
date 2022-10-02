@@ -4,19 +4,23 @@
 <div class="container">
     
     <div class="d-grid gap-2 col-md-4 mx-auto">
-        <a class="btn btn-primary btn-lg" href="/articles/create" role="button">Create New Article</a>
+        <a class="btn btn-primary btn-lg" href="/user/articles/create" role="button">Create New Article</a>
     </div>
-    
+
     <hr>
 
-    @if($articles->count()==0)
+    @if ($message = Session::get('success'))
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>{{$message}}</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    @endif
 
+    @if($articles->count()==0)
     <div class="alert alert-danger text-center" role="alert">
         There is no article available, you should create one!
     </div>
-
     @else
-    
     <div class="row">
         @foreach ($articles as $article)
         <div class="col-md-4 col-sm-12 mt-4">
@@ -24,16 +28,17 @@
                 <img src="{{ asset('/images/'.$article->image) }}" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title">
-                        <a href="/articles/{{$article->id}}" class="text-decoration-none">{{$article->title}}</a>
+                        <a href="/user/articles/{{$article->id}}" class="text-decoration-none">{{$article->title}}</a>
                     </h5>
-                    <p class="card-text">category : {{$article->category->name}}</p>
-                    <a href="/articles/{{$article->id}}" class="btn btn-primary">Details</a>
+                    <p class="card-text">
+                        category : <a href="/user/categories/{{$article->category->id}}" class="text-decoration-none">{{$article->category->name}}</a>
+                    </p>
+                    <a href="/user/articles/{{$article->id}}" class="btn btn-primary">Details</a>
                 </div>
             </div>
         </div>
         @endforeach
     </div>
-
     @endif
 
 </div>
