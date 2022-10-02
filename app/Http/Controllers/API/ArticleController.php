@@ -66,7 +66,7 @@ class ArticleController extends Controller
         $validator = Validator::make($request->all(), [
             "title" => "required|string|max:255",
             "content" => "required|string",
-            "image" => "string",
+            "image" => "mimes:jpg,jpeg,png",
             "user_id" => "required|integer",
             "category_id" => "required|integer",
         ]);
@@ -75,12 +75,29 @@ class ArticleController extends Controller
             return response()->json($validator->errors());
         }
 
-        $article->title = $request->title;
-        $article->content = $request->content;
-        $article->image = $request->image;
-        $article->user_id = $request->user_id;
-        $article->category_id = $request->category_id;
-        $article->save();
+        // if image inserted, then replace current image with new image
+        if($request->image!=null){
+            $currentImage = Article::find($id)->image;
+            if(File::exists(public_path('images/' . $currentImage))){
+                File::delete(public_path('images/' . $currentImage));
+            }
+
+            $imageName = $request->image->hashName();
+            $request->image->move(public_path('images'), $imageName);
+
+            $article->title = $request->title;
+            $article->content = $request->content;
+            $article->image = $imageName;
+            $article->user_id = $request->user_id;
+            $article->category_id = $request->category_id;
+            $article->save();
+        } else {
+            $article->title = $request->title;
+            $article->content = $request->content;
+            $article->user_id = $request->user_id;
+            $article->category_id = $request->category_id;
+            $article->save();
+        }
 
         return response()->json([
             "article updated",
