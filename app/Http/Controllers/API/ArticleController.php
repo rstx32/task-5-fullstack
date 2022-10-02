@@ -34,7 +34,7 @@ class ArticleController extends Controller
         $validator = Validator::make($request->all(), [
             "title" => "required|string|max:255",
             "content" => "required|string",
-            "image" => "required|URL",
+            "image" => "required|string",
             "user_id" => "required|integer",
             "category_id" => "required|integer",
         ]);
