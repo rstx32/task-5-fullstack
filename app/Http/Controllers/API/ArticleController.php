@@ -109,6 +109,10 @@ class ArticleController extends Controller
     // delete an article
     public function destroy(Article $article)
     {
+        $imageName = Article::find($article->id)->image;
+        if(File::exists(public_path('images/' . $imageName))){
+            File::delete(public_path('images/' . $imageName));
+        }
         $article->delete();
 
         return response()->json("article deleted");
