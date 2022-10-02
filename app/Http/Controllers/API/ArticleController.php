@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Article;
 use App\Http\Resources\ArticleResource;
 use Validator;
+use File;
 
 class ArticleController extends Controller
 {
@@ -77,7 +78,7 @@ class ArticleController extends Controller
 
         // if image inserted, then replace current image with new image
         if($request->image!=null){
-            $currentImage = Article::find($id)->image;
+            $currentImage = Article::find($article->id)->image;
             if(File::exists(public_path('images/' . $currentImage))){
                 File::delete(public_path('images/' . $currentImage));
             }
