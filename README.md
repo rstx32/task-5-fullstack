@@ -1,6 +1,6 @@
 ## run this for the first time
-**php artisan migrate --seed**
-**php artisan passport:client --personal**
+- **php artisan migrate --seed**
+- **php artisan passport:client --personal**
 
 command above for creating table & sample record, and personal access client for registration API purpose.
 and don't forget to run : **npm run dev** at another terminal for bootstrap render.
