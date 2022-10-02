@@ -2,10 +2,6 @@
 
 @section('content')
 <div class="container">
-    
-    <div class="d-grid gap-2 col-md-4 mx-auto">
-        <a class="btn btn-primary btn-lg" href="/user/articles/create" role="button">Create New Article</a>
-    </div>
 
     <hr>
 
@@ -28,12 +24,12 @@
                 <img src="{{ asset('/images/'.$article->image) }}" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title">
-                        <a href="/user/articles/{{$article->id}}" class="text-decoration-none">{{$article->title}}</a>
+                        <a href="/articles/{{$article->id}}" class="text-decoration-none">{{$article->title}}</a>
                     </h5>
                     <p class="card-text">
                         category : <a href="/categories/{{$article->category->id}}" class="text-decoration-none">{{$article->category->name}}</a>
                     </p>
-                    <a href="/user/articles/{{$article->id}}" class="btn btn-primary">Details</a>
+                    <a href="/articles/{{$article->id}}" class="btn btn-primary">Details</a>
                 </div>
             </div>
         </div>

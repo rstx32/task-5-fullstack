@@ -15,12 +15,15 @@ use App\Http\Controllers\User\CategoryController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    // return view('welcome');
+    return redirect('/articles');
 });
 
 Auth::routes();
 
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', function(){
+    return redirect('/user/articles');
+})->name('home');
 
 Route::middleware('auth')->group(function(){
     Route::prefix('user')->group(function(){
@@ -28,3 +31,8 @@ Route::middleware('auth')->group(function(){
         Route::resource('categories', CategoryController::class);
     });
 });
+
+Route::get('/articles', '\App\Http\Controllers\Public\ArticleController@index');
+Route::get('/articles/{id}', '\App\Http\Controllers\Public\ArticleController@show');
+Route::get('/categories', '\App\Http\Controllers\Public\CategoryController@index');
+Route::get('/categories/{id}', '\App\Http\Controllers\Public\CategoryController@show');
