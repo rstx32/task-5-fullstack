@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\View\ArticleController;
+use App\Http\Controllers\View\CategoryController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,4 +24,5 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::middleware('auth')->group(function(){
     Route::resource('articles', ArticleController::class);
+    Route::resource('categories', CategoryController::class);
 });
