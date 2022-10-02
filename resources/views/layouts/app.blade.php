@@ -27,15 +27,43 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <div class="collapse navbar-collapse " id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav me-auto">
-                        <li>
-                            <a href="/user/articles">Articles</a>
+                    <ul class="navbar-nav mx-auto">
+                        @guest
+                        <li class="nav-item">
+                            <h5>
+                                <a href="/articles" class="nav-link">Articles</a>
+                            </h5>
                         </li>
-                        <li>
-                            <a href="/user/categories">Categories</a>
+                        <li class="nav-item">
+                            <h5>
+                                <a href="/categories" class="nav-link">Categories</a>
+                            </h5>
                         </li>
+                        @endguest
+                        @auth
+                        <li class="nav-item">
+                            <h5>
+                                <a href="/articles" class="nav-link">All Articles</a>
+                            </h5>
+                        </li>
+                        <li class="nav-item">
+                            <h5>
+                                <a href="/categories" class="nav-link">All Categories</a>
+                            </h5>
+                        </li>
+                        <li class="nav-item">
+                            <h5>
+                                <a href="/user/articles" class="nav-link">Manage Own Articles</a>
+                            </h5>
+                        </li>
+                        <li class="nav-item">
+                            <h5>
+                                <a href="/user/categories" class="nav-link">Manage Own Categories</a>
+                            </h5>
+                        </li>
+                        @endauth
                     </ul>
 
                     <!-- Right Side Of Navbar -->
