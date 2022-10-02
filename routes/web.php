@@ -1,8 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\View\ArticleController;
-use App\Http\Controllers\View\CategoryController;
+use App\Http\Controllers\User\ArticleController;
+use App\Http\Controllers\User\CategoryController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
