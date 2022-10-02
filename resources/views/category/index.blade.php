@@ -6,6 +6,11 @@
         
         <div class="col-md-12 bg-white p-4">
             <a href="/categories/create"><button class="btn btn-primary mb-3">Create New Category</button></a>
+            @if($categories->count()==0)
+            <div class="alert alert-danger text-center" role="alert">
+                There is no category available, you should create one!
+            </div>
+            @else
             <table class="table table-responsive table-bordered table-hover table-stripped">
                 <thead>
                     <tr class="text-center">
@@ -33,6 +38,7 @@
                     @endforeach
                 </tbody>
             </table>
+            @endif
         </div>
 
     </div>

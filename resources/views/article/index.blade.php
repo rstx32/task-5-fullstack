@@ -9,8 +9,15 @@
     
     <hr>
 
+    @if($articles->count()==0)
+
+    <div class="alert alert-danger text-center" role="alert">
+        There is no article available, you should create one!
+    </div>
+
+    @else
+    
     <div class="row">
-        
         @foreach ($articles as $article)
         <div class="col-md-4 col-sm-12 mt-4">
             <div class="card">
@@ -25,8 +32,9 @@
             </div>
         </div>
         @endforeach
-
     </div>
+
+    @endif
 
 </div>
 @endsection
