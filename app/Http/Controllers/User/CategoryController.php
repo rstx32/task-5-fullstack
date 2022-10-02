@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\View;
+namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -50,7 +50,9 @@ class CategoryController extends Controller
         ->where('category_id', $id)
         ->get();
 
-        return view('category.detail', ['articles' => $articles]);
+        $category = Category::find($id);
+
+        return view('category.detail', ['articles' => $articles, 'category' => $category]);
     }
 
     // edit a category
