@@ -3,8 +3,12 @@
 @section('content')
 <div class="container">
 
-    <div class="d-grid gap-2 col-md-4 mx-auto">
-       Total Article : {{ $articles->count() }}
+    <div class="d-grid gap-2 text-center mx-auto">
+        <h3>
+           {{ $category->name }}
+        </h3>
+        <br>
+        Total Article : {{ $articles->count() }}
     </div>
     
     <hr>
