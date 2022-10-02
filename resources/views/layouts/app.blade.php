@@ -30,7 +30,12 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
-
+                        <li>
+                            <a href="/articles">Articles</a>
+                        </li>
+                        <li>
+                            <a href="/categories">Categories</a>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
